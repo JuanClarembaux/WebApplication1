@@ -15,7 +15,7 @@ namespace prueba1.Models
     public partial class usuario
     {
         public int idUsuario { get; set; }
-        public string usuario1 { get; set; }
-        public string contraseñaUsuario { get; set; }
+        public string nombreUsuario { get; set; }
+        public string passwordUsuario { get; set; }
     }
 }

@@ -5,45 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="pIIWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'pIIWeb.dbo.jugador' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="jugador">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="apellido" />
-            <PropertyRef Name="nombre" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="apellido" Type="nchar" MaxLength="45" Nullable="false" />
           <Property Name="nombre" Type="nchar" MaxLength="45" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'pIIWeb.dbo.usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
-            <PropertyRef Name="usuario" />
-            <PropertyRef Name="contraseñaUsuario" />
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="usuario" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="contraseñaUsuario" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombreUsuario" Type="nchar" MaxLength="35" Nullable="false" />
+          <Property Name="passwordUsuario" Type="nchar" MaxLength="35" Nullable="false" />
         </EntityType>
         <EntityContainer Name="pIIWebModelStoreContainer">
-          <EntitySet Name="jugador" EntityType="Self.jugador" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [jugador].[id] AS [id], 
-    [jugador].[apellido] AS [apellido], 
-    [jugador].[nombre] AS [nombre]
-    FROM [dbo].[jugador] AS [jugador]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="usuario" EntityType="Self.usuario" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [usuario].[idUsuario] AS [idUsuario], 
-    [usuario].[usuario] AS [usuario], 
-    [usuario].[contraseñaUsuario] AS [contraseñaUsuario]
-    FROM [dbo].[usuario] AS [usuario]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="jugador" EntityType="Self.jugador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -56,8 +36,6 @@ advertencia 6002: La tabla o vista 'pIIWeb.dbo.usuario' no tiene definida ningun
         <EntityType Name="jugador">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="apellido" />
-            <PropertyRef Name="nombre" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="45" FixedLength="true" Unicode="true" />
@@ -66,12 +44,10 @@ advertencia 6002: La tabla o vista 'pIIWeb.dbo.usuario' no tiene definida ningun
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
-            <PropertyRef Name="usuario1" />
-            <PropertyRef Name="contraseñaUsuario" />
           </Key>
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="contraseñaUsuario" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="35" FixedLength="true" Unicode="true" />
+          <Property Name="passwordUsuario" Type="String" Nullable="false" MaxLength="35" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -91,8 +67,8 @@ advertencia 6002: La tabla o vista 'pIIWeb.dbo.usuario' no tiene definida ningun
           <EntitySetMapping Name="usuario">
             <EntityTypeMapping TypeName="pIIWebModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
-                <ScalarProperty Name="contraseñaUsuario" ColumnName="contraseñaUsuario" />
-                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="passwordUsuario" ColumnName="passwordUsuario" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
               </MappingFragment>
             </EntityTypeMapping>

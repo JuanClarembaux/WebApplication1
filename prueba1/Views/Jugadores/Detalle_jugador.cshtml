@@ -1,15 +1,14 @@
 ﻿@model prueba1.Models.jugador
 
 @{
-    ViewBag.Title = "Borrar_jugador";
+    ViewBag.Title = "Detalle_jugador";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>BORRAR JUGADOR</h2>
+<h2>DETALLE JUGADOR</h2>
 
-<h3>¿ Está seguro que desea eliminar este jugador de la lista ?</h3>
 <div>
-    <h4>JUGADOR</h4>
+    <h4>jugador</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,13 +28,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver", "lista_jugadores_db")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Editar_jugador", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "lista_jugadores_db")
+</p>
